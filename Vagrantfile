@@ -56,9 +56,9 @@ Vagrant.configure("2") do |config|
         :php_packages   => %w{ php5-mysqlnd php5-curl php5-mcrypt php5-memcached php5-gd }
       },
       :mysql => {
-        :server_root_password   => 'root',
-        :server_repl_password   => 'root',
-        :server_debian_password => 'root',
+        :server_root_password   => 'lucerna',
+        :server_repl_password   => 'lucerna',
+        :server_debian_password => 'lucerna',
         :bind_address           => '172.90.90.90',
         :allow_remote_root      => true
       }
