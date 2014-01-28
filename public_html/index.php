@@ -1,6 +1,6 @@
 <?php
 // MySQL
-$mysqli = @new mysqli('localhost', 'root', 'root');
+$mysqli = @new mysqli('localhost', 'root', 'lucerna');
 
 $mysql_running = true;
 if (mysqli_connect_errno()) {
@@ -11,23 +11,15 @@ if (mysqli_connect_errno()) {
 
 $mysqli->close();
 
-// Memcached
-$m = new Memcached();
-$memcached_running = false;
-if ($m->addServer('localhost', 11211)) {
-	$memcached_running = true;
-	$memcached_version = $m->getVersion();
-	$memcached_version = current($memcached_version);
-}
 ?>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Vagrant LAMP stack</title>
+	<title>Lucerna LAMP stack</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
-	<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<style type="text/css">
 	html, body {
 		height: 100%;
@@ -73,10 +65,10 @@ if ($m->addServer('localhost', 11211)) {
 	<div id="wrap">
 		<div class="container">
 			<div class="page-header">
-				<i class="icon-lightbulb icon-4x"></i>
+				<i class="fa fa-fire fa-4x"></i>
 				<h1>It works!</h1>
 			</div>
-			<p class="lead">The Virtual Machine is up and running, yay! Here's some additional information you might need.</p>
+			<p class="lead">The Lucerna LAMP stack is up and running in a Vagrant VM. Here's some additional information you might need.</p>
 
 			<h3>Installed software</h3>
 			<table class="table table-striped">
@@ -87,22 +79,12 @@ if ($m->addServer('localhost', 11211)) {
 
 				<tr>
 					<td>MySQL running</td>
-					<td><i class="icon-<?php echo ($mysql_running ? 'ok' : 'remove'); ?>"></i></td>
+					<td><i class="fa fa-<?php echo ($mysql_running ? 'check' : 'remove'); ?>"></i></td>
 				</tr>
 
 				<tr>
 					<td>MySQL version</td>
 					<td><?php echo ($mysql_running ? $mysql_version : 'N/A'); ?></td>
-				</tr>
-
-				<tr>
-					<td>Memcached running</td>
-					<td><i class="icon-<?php echo ($memcached_running ? 'ok' : 'remove'); ?>"></i></td>
-				</tr>
-
-				<tr>
-					<td>Memcached version</td>
-					<td><?php echo ($memcached_version ? $memcached_version : 'N/A'); ?></td>
 				</tr>
 			</table>
 
@@ -110,27 +92,12 @@ if ($m->addServer('localhost', 11211)) {
 			<table class="table table-striped">
 				<tr>
 					<td>MySQL</td>
-					<td><i class="icon-<?php echo (class_exists('mysqli') ? 'ok' : 'remove'); ?>"></i></td>
+					<td><i class="fa fa-<?php echo (class_exists('mysqli') ? 'check' : 'remove'); ?>"></i></td>
 				</tr>
 
 				<tr>
 					<td>CURL</td>
-					<td><i class="icon-<?php echo (function_exists('curl_init') ? 'ok' : 'remove'); ?>"></i></td>
-				</tr>
-
-				<tr>
-					<td>mcrypt</td>
-					<td><i class="icon-<?php echo (function_exists('mcrypt_encrypt') ? 'ok' : 'remove'); ?>"></i></td>
-				</tr>
-
-				<tr>
-					<td>memcached</td>
-					<td><i class="icon-<?php echo (class_exists('Memcached') ? 'ok' : 'remove'); ?>"></i></td>
-				</tr>
-
-				<tr>
-					<td>gd</td>
-					<td><i class="icon-<?php echo (function_exists('imagecreate') ? 'ok' : 'remove'); ?>"></i></td>
+					<td><i class="fa fa-<?php echo (function_exists('curl_init') ? 'check' : 'remove'); ?>"></i></td>
 				</tr>
 			</table>
 
@@ -143,12 +110,12 @@ if ($m->addServer('localhost', 11211)) {
 
 				<tr>
 					<td>Username</td>
-					<td>root</td>
+					<td>lucerna</td>
 				</tr>
 
 				<tr>
 					<td>Password</td>
-					<td>root</td>
+					<td>lucerna</td>
 				</tr>
 
 				<tr>
@@ -162,7 +129,7 @@ if ($m->addServer('localhost', 11211)) {
 
 	<div id="footer">
 		<div class="container">
-			<p class="muted credit"><a href="https://github.com/MiniCodeMonkey/Vagrant-LAMP-Stack" target="_blank">Vagrant LAMP Stack</a> by <a href="https://github.com/MiniCodeMonkey" traget="_blank">Code Monkey</a>.</p>
+			<p class="muted credit"><a href="https://github.com/jp1971/lucerna" target="_blank">Lucerna</a> by <a href="https://github.com/jp1971" traget="_blank">JP1971</a>.</p>
 		</div>
 	</div>
 </body>
