@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_host = true
   config.vm.define 'lucerna' do |node|
     node.vm.hostname = 'lucerna.local'
-    node.vm.network :private_network, ip: '172.90.90.90'
+    node.vm.network :private_network, ip: '10.16.19.71'
     node.hostmanager.aliases = %w(www.lucerna.local)
   end
   config.vm.provision :hostmanager
@@ -28,7 +28,6 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "app::packages"
     chef.add_recipe "app::web_server"
     chef.add_recipe "app::vhost"
-    chef.add_recipe "memcached"
     chef.add_recipe "app::db"
     chef.json = {
       :app => {
@@ -36,7 +35,7 @@ Vagrant.configure("2") do |config|
         :name           => "lucerna",
 
         # Name of MySQL database that should be created
-        :db_name        => "dbname",
+        :db_name        => "lucerna",
 
         # Optional database dump to be imported when server is provisioned
         # If the file doesn't exist, it is just ignored
@@ -50,16 +49,16 @@ Vagrant.configure("2") do |config|
         :docroot        => "/var/www/lucerna/public_html",
 
         # General packages
-        :packages   => %w{ vim git screen curl },
+        :packages   => %w{ git screen curl },
         
         # PHP packages
-        :php_packages   => %w{ php5-mysqlnd php5-curl php5-mcrypt php5-memcached php5-gd }
+        :php_packages   => %w{ php5-mysqlnd php5-curl }
       },
       :mysql => {
         :server_root_password   => 'lucerna',
         :server_repl_password   => 'lucerna',
         :server_debian_password => 'lucerna',
-        :bind_address           => '172.90.90.90',
+        :bind_address           => '10.16.19.71',
         :allow_remote_root      => true
       }
     }
